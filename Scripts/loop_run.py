@@ -25,7 +25,7 @@ for i in range(1, 2):
     count = 0
     for article in articles:
         try:
-            if count == 18:  # In md-4 run up to 18, in md-6 up to 12
+            if count == 2:  # In md-4 run up to 18, in md-6 up to 12
                 break
             count += 1
 
@@ -67,10 +67,10 @@ for i in range(1, 2):
     print("Total articles found:", len(articles))
 
 # Save all articles to a JSON file
-with open("articles.json", "w", encoding="utf-8") as json_file:
+with open("JSON/articles.json", "w", encoding="utf-8") as json_file:
     json.dump(all_articles, json_file, ensure_ascii=False, indent=4)
 
 print("Total articles found:", sum)
-print("Data saved to articles.json")
+print("Data saved to JSON/articles.json")
 # Close the driver after scraping
 driver.quit()
