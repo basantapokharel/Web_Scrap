@@ -10,7 +10,7 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 sum = 0
 all_articles = []  # List to store all article details
 
-for i in range(1, 11):
+for i in range(11, 21):
     # Open the Setopati website
     url = f"https://www.setopati.com/sports?page={i}" # Change here
     driver.get(url)
