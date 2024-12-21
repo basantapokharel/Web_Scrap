@@ -10,22 +10,22 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 sum = 0
 all_articles = []  # List to store all article details
 
-for i in range(1, 4):
+for i in range(1, 11):
     # Open the Setopati website
-    url = f"https://www.setopati.com/sports/cricket?page={i}"
+    url = f"https://www.setopati.com/sports?page={i}" # Change here
     driver.get(url)
 
     # Wait for the page to load
     time.sleep(3)
 
-    # Select all divs with the class 'items col-md-4'
-    articles = driver.find_elements(By.CSS_SELECTOR, 'div.items.col-md-4')
+    # Select all divs with the class 'items col-md-6'
+    articles = driver.find_elements(By.CSS_SELECTOR, 'div.items.col-md-6')
 
     # Iterate through each article and extract details
     count = 0
     for article in articles:
         try:
-            if count == 18:  # In md-4 run up to 18, in md-6 up to 12
+            if count == 12:  # In md-4 run up to 18, in md-6 up to 12
                 break
             count += 1
 
@@ -44,8 +44,9 @@ for i in range(1, 4):
             # Extract the publication date
             date = article.find_element(By.CLASS_NAME, 'time-stamp').text
 
-            # Add article details to the list
+            # Add article details to the list with a number for the element
             article_data = {
+                "Number": len(all_articles) + 1,  # Add the number of the article
                 "Title": title,
                 "Tag": tag,
                 "Author": author,
@@ -54,7 +55,7 @@ for i in range(1, 4):
             }
             all_articles.append(article_data)
 
-            print(f"Title: {title,count}")
+            print(f"Title: {title}, Count: {count}")
             print(f"Tag: {tag}")
             print(f"Author: {author}")
             print(f"Date: {date}")
@@ -63,14 +64,14 @@ for i in range(1, 4):
         except Exception as e:
             print("Error extracting article:", e)
 
-    sum += len(articles) - 3
-    print("Total articles found:", len(articles) - 3)
+    sum += len(articles) - 2
+    print("Total articles found:", len(articles) - 2)
 
 # Save all articles to a JSON file
-with open("JSON/articles.json", "w", encoding="utf-8") as json_file:
+with open("JSON/sports_articles_4.json", "w", encoding="utf-8") as json_file: # Change here
     json.dump(all_articles, json_file, ensure_ascii=False, indent=4)
 
 print("Total articles found:", sum)
-print("Data saved to JSON/articles.json")
+print("Data saved to JSON/sports_articles_4.json") # Change here
 # Close the driver after scraping
 driver.quit()
