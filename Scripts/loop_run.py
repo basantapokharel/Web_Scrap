@@ -10,7 +10,7 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 sum = 0
 all_articles = []  # List to store all article details
 
-for i in range(1, 2):
+for i in range(1, 4):
     # Open the Setopati website
     url = f"https://www.setopati.com/sports/cricket?page={i}"
     driver.get(url)
@@ -25,7 +25,7 @@ for i in range(1, 2):
     count = 0
     for article in articles:
         try:
-            if count == 2:  # In md-4 run up to 18, in md-6 up to 12
+            if count == 18:  # In md-4 run up to 18, in md-6 up to 12
                 break
             count += 1
 
@@ -63,8 +63,8 @@ for i in range(1, 2):
         except Exception as e:
             print("Error extracting article:", e)
 
-    sum += len(articles)
-    print("Total articles found:", len(articles))
+    sum += len(articles) - 3
+    print("Total articles found:", len(articles) - 3)
 
 # Save all articles to a JSON file
 with open("JSON/articles.json", "w", encoding="utf-8") as json_file:
