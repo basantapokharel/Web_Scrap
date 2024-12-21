@@ -63,8 +63,8 @@ for i in range(1, 2):
         except Exception as e:
             print("Error extracting article:", e)
 
-    sum += len(articles)
-    print("Total articles found:", len(articles))
+    sum += len(articles)-3
+    print("Total articles found:", len(articles)-3)
 
 # Save all articles to a JSON file
 with open("JSON/articles.json", "w", encoding="utf-8") as json_file:
