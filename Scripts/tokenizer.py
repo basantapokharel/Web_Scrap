@@ -1,20 +1,27 @@
 import json
+import nltk
 from nltk.tokenize import word_tokenize
 
 # Load the JSON file
 with open("JSON/scraped_articles.json", 'r', encoding='utf-8') as file:
     articles = json.load(file)
 
-# Tokenize the content of each article
+# Define the characters to remove
+remove_tokens = [',', '(', ')', "'", ":", "-", "’", "‘"]
+
+# Tokenize the content of each article and remove specific elements
 tokenized_articles = []
 for index, article in enumerate(articles, start=1):
     tokens = word_tokenize(article['content'])
+    
+    # Filter out the specific tokens
+    filtered_tokens = [token for token in tokens if token not in remove_tokens]
     
     tokenized_articles.append(
         {
             'number': index,  # New key for number before title
             'title': article['title'],
-            'tokens': tokens  # Tokens in one line
+            'tokens': filtered_tokens  # Tokens without the specified elements
         }
     )
 
