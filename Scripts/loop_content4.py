@@ -9,7 +9,7 @@ import time
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
 # Load the JSON file
-with open("JSON/kinmel_articles_4.json", "r", encoding="utf-8") as file:
+with open("JSON/Article_Links/social_articles_4_1to15.json", "r", encoding="utf-8") as file:
     articles = json.load(file)
 
 # Initialize an empty list to store article content
@@ -38,7 +38,7 @@ for article in articles:
         print(f"Error scraping {article['Title']}: {e}")
 
 # Save the scraped data to a new JSON file
-with open("JSON/kinmel_content_4.json", "w", encoding="utf-8") as outfile:
+with open("JSON/Article_Content/social_content_4_1to15.json", "w", encoding="utf-8") as outfile:
     json.dump(scraped_data, outfile, ensure_ascii=False, indent=4)
 
 

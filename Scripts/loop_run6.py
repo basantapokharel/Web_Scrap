@@ -10,9 +10,9 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 sum = 0
 all_articles = []  # List to store all article details
 
-for i in range(1, 11):
+for i in range(1, 16):
     # Open the Setopati website
-    url = f"https://www.setopati.com/sports?page={i}" # Change here
+    url = f"https://www.setopati.com/opinion?page={i}" # Change here
     driver.get(url)
 
     # Wait for the page to load
@@ -68,10 +68,10 @@ for i in range(1, 11):
     print("Total articles found:", len(articles) - 2)
 
 # Save all articles to a JSON file
-with open("JSON/sports_articles_4.json", "w", encoding="utf-8") as json_file: # Change here
+with open("JSON/Article_Links/opinion_articles_6_1to15.json", "w", encoding="utf-8") as json_file: # Change here
     json.dump(all_articles, json_file, ensure_ascii=False, indent=4)
 
 print("Total articles found:", sum)
-print("Data saved to JSON/sports_articles_4.json") # Change here
+print("Data saved to JSON/Article_Links/opinion_articles_6_1to15.json") # Change here
 # Close the driver after scraping
 driver.quit()
